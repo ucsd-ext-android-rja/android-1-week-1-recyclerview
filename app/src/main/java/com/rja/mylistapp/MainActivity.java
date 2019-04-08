@@ -1,21 +1,17 @@
 package com.rja.mylistapp;
 
 import android.graphics.Color;
-import android.os.Handler;
-import android.support.annotation.ColorInt;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -109,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ListItemData item = items.get(position);
 
-                textViewHolder.setText(item.getTitle());
+                textViewHolder.setText(item.getTitle(), item.getSubtitle());
                 textViewHolder.setBackgroundColor(item.getBackgroundColor());
             }
         }
@@ -129,16 +125,18 @@ public class MainActivity extends AppCompatActivity {
     private static class TextViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
-
+        private TextView subtitleTextView;
 
         public TextViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textView = itemView.findViewById(R.id.lit_text_view);
+            textView = itemView.findViewById(R.id.lit_text_view_title);
+            subtitleTextView = itemView.findViewById(R.id.lit_text_view_subtitle);
         }
 
-        public void setText(String text) {
+        public void setText(String text, String subtitle) {
             textView.setText(text);
+            subtitleTextView.setText(subtitle);
         }
 
         public void setBackgroundColor(int color) {
